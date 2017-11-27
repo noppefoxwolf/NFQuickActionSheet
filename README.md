@@ -22,7 +22,7 @@ pod 'NFQuickActionSheet'
 
 ## Author
 
-🦊Tomoya Hirano, tomoya.hirano@dena.jp
+🦊Tomoya Hirano, noppelabs@gmail.com
 
 ## License
 

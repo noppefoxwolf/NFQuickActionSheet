@@ -1,0 +1,16 @@
+PODS:
+  - NFQuickActionSheet (0.1.0)
+
+DEPENDENCIES:
+  - NFQuickActionSheet (from `../`)
+
+EXTERNAL SOURCES:
+  NFQuickActionSheet:
+    :path: ../
+
+SPEC CHECKSUMS:
+  NFQuickActionSheet: 339e58ac85504d915bbab0a23d949507ac9b29fa
+
+PODFILE CHECKSUM: c8289d88281fa3ec08d37603bd817c52ef87d4c1
+
+COCOAPODS: 1.4.0.beta.2

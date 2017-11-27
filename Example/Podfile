@@ -2,10 +2,4 @@ use_frameworks!
 
 target 'NFQuickActionSheet_Example' do
   pod 'NFQuickActionSheet', :path => '../'
-
-  target 'NFQuickActionSheet_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end
