@@ -21,17 +21,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="artwork" translatesAutoresizingMaskIntoConstraints="NO" id="nRc-hi-sn9">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img" translatesAutoresizingMaskIntoConstraints="NO" id="nRc-hi-sn9">
                                 <rect key="frame" x="67" y="269" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="Vie-Ls-0cJ"/>
                                     <constraint firstAttribute="width" constant="240" id="l2G-gc-E3f"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img" translatesAutoresizingMaskIntoConstraints="NO" id="aTO-d4-mHz">
+                                <rect key="frame" x="67" y="431" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="9k5-1V-SeY"/>
+                                    <constraint firstAttribute="height" constant="128" id="tBR-Td-ItA"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.70757744720000004" blue="0.61880750090000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="nRc-hi-sn9" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="AiD-W0-o1h"/>
+                            <constraint firstItem="aTO-d4-mHz" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="QNE-FT-fXT"/>
+                            <constraint firstItem="aTO-d4-mHz" firstAttribute="top" secondItem="nRc-hi-sn9" secondAttribute="bottom" constant="34" id="gl0-t8-2j1"/>
                             <constraint firstItem="nRc-hi-sn9" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="l1z-Db-81m"/>
                         </constraints>
                     </view>
@@ -44,6 +53,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="artwork" width="512" height="512"/>
+        <image name="img" width="1420" height="774"/>
     </resources>
 </document>

@@ -9,10 +9,14 @@ import UIKit
 
 public struct QuickAction {
   public let title: String
+  public let color: UIColor
+  public let image: UIImage?
   public let handler: ((QuickAction) -> Void)
   
-  public init(title: String, handler: @escaping ((QuickAction) -> Void)) {
+  public init(title: String, color: UIColor = UIColor.red, image: UIImage?, handler: @escaping ((QuickAction) -> Void)) {
     self.title = title
+    self.color = color
+    self.image = image
     self.handler = handler
   }
 }

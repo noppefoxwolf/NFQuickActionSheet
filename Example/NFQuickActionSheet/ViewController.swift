@@ -26,18 +26,18 @@ class ViewController: UIViewController {
     case .began:
       vc = QuickActionController.make(with: sender.view)
       vc?.addAction(
-        QuickAction(title: "お気に入り", handler: { (_) in
-          
+        QuickAction(title: "カメラ", color: UIColor.lightGray, image: UIImage(named: "icons8-camera"), handler: { (_) in
+          print("fav")
         })
       )
       vc?.addAction(
-        QuickAction(title: "リツイート", handler: { (_) in
-          
+        QuickAction(title: "お気に入り", color: UIColor.yellow, image: UIImage(named: "icons8-like"), handler: { (_) in
+          print("rt")
         })
       )
       vc?.addAction(
-        QuickAction(title: "その他", handler: { (_) in
-          
+        QuickAction(title: "その他", color: UIColor.darkGray, image: UIImage(named: "icons8-menu"), handler: { (_) in
+          print("other")
         })
       )
       present(vc!, animated: true, completion: {

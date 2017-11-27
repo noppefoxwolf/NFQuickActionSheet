@@ -35,6 +35,7 @@ public class QuickActionController: UIViewController, UIViewControllerTransition
         }
       }
       updateLabelText(index: newValue)
+      updatePopsColor(index: newValue)
     }
   }
   
@@ -74,6 +75,8 @@ public class QuickActionController: UIViewController, UIViewControllerTransition
     actions.append(action)
     
     let popView = QuickActionPopView(frame: CGRect(x: 0, y: 0, width: popWidth, height: popWidth))
+    popView.configure(tintColor: action.color)
+    popView.configure(image: action.image)
     actionPops.append(popView)
   }
   
@@ -119,14 +122,24 @@ public class QuickActionController: UIViewController, UIViewControllerTransition
   
   public func gestureChanged(_ sender: UIGestureRecognizer) {
     let point = sender.location(in: view)
-    currentIndex = actionPops.enumerated().flatMap({ (arg) -> Int? in
-      let (index, _) = arg
-      return self.touchableRect(index: index).contains(point) ? index : nil }).first
+    currentIndex = index(of: point)
     animatePops()
   }
   
   public func gestureEnded(_ sender: UIGestureRecognizer) {
+    let point = sender.location(in: view)
+    if let index = index(of: point) {
+      let action = actions[index]
+      action.handler(action)
+    }
     dismiss(animated: true, completion: nil)
+  }
+  
+  private func index(of point: CGPoint) -> Int? {
+    return actionPops.enumerated().flatMap({ (arg) -> Int? in
+      let (index, _) = arg
+      return self.touchableRect(index: index).contains(point) ? index : nil
+    }).first
   }
   
   private func animatePops() {
@@ -147,6 +160,16 @@ public class QuickActionController: UIViewController, UIViewControllerTransition
                     after()
     }) { (_) in
       
+    }
+  }
+  
+  private func updatePopsColor(index: Int?) {
+    actionPops.enumerated().forEach { (offset, view) in
+      if offset == index {
+        view.presentColor()
+      } else {
+        view.dismissColor()
+      }
     }
   }
   
