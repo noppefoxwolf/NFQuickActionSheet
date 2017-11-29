@@ -110,6 +110,7 @@ public class QuickActionController: UIViewController, UIViewControllerTransition
   
   private func setupLabel() {
     view.addSubview(label)
+    label.frame = labelFrame(of: menuCenterPosition)
   }
   
   private func updateLabelText(index: Int?) {
@@ -174,13 +175,47 @@ public class QuickActionController: UIViewController, UIViewControllerTransition
   }
   
   private func popCenter(index: Int, focus: Bool) -> CGPoint {
-    let radOffset: CGFloat = 180.0 + 90.0 - 45.0
-    let rad = CGFloat(index) * 45.0 + radOffset
+    let betweetRad: CGFloat = 45.0
+    let count = actions.count
+    let totalRad: CGFloat = CGFloat(count - 1) * betweetRad
+    let popRadOffset = self.popRadOffset(of: menuCenterPosition)
+    let radOffset: CGFloat = 90.0 - (totalRad / 2.0) - popRadOffset
+    let rad = CGFloat(index) * betweetRad + radOffset
     let r: CGFloat = focus ? 100.0 : 84.0
     let x = r * cos(rad * CGFloat.pi / 180)
     let y = r * sin(rad * CGFloat.pi / 180)
     let transform = CGAffineTransform(translationX: x, y: y)
     return menuCenterPosition.applying(transform)
+  }
+  
+  //ボタンが隠れそうな時に調整する
+  private func popRadOffset(of center: CGPoint) -> CGFloat {
+    let rightSpace = view.bounds.width - center.x
+    let leftSpace = center.x
+    let topSpace = center.y
+    let warningHorizontalSpace: CGFloat = 64.0
+    let warningVerticalSpace: CGFloat = 100.0 + 20.0 + 120.0
+    var offset: CGFloat = 180.0
+    let isOverTop = topSpace < warningVerticalSpace
+    if isOverTop { //上に寄り過ぎ
+      offset = 0
+    }
+    if rightSpace < warningHorizontalSpace { //右に寄りすぎ
+      offset += (1.0 - (rightSpace / warningHorizontalSpace)) * 90.0 * (isOverTop ? -1.0 : 1.0)
+    } else if leftSpace < warningHorizontalSpace { //左に寄りすぎ
+      offset += (1.0 - (leftSpace / warningHorizontalSpace)) * 90.0 * (isOverTop ? 1.0 :-1.0)
+    }
+    return offset
+  }
+  
+  private func labelFrame(of center: CGPoint) -> CGRect {
+    let topSpace = center.y
+    let warningVerticalSpace: CGFloat = 100.0 + 20.0 + 120.0 // ボタン・スペース・ラベル
+    if topSpace < warningVerticalSpace { //上に寄り過ぎ
+      return CGRect(x: 0, y: center.y + 100.0 + 20.0, width: view.bounds.width, height: 120)
+    } else {
+      return CGRect(x: 0, y: center.y - 100.0 - 20.0 - 120.0, width: view.bounds.width, height: 120)
+    }
   }
   
   private func touchableRect(index: Int) -> CGRect {
