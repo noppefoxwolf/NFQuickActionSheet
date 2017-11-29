@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QuickActionPopView: UIView {
+final class QuickActionPopView: UIView {
   private let bgView = UIView()
   private let iconView = UIImageView()
   

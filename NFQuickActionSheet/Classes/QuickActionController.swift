@@ -42,7 +42,7 @@ public class QuickActionController: UIViewController, UIViewControllerTransition
   private lazy var label: UILabel = {
     let label = UILabel()
     label.frame = CGRect(x: 0, y: 120, width: view.bounds.width, height: 120)
-    label.font = UIFont.boldSystemFont(ofSize: 84)
+    label.font = UIFont.boldSystemFont(ofSize: 64)
     label.adjustsFontSizeToFitWidth = true
     label.textColor = UIColor.darkGray
     return label
@@ -111,6 +111,7 @@ public class QuickActionController: UIViewController, UIViewControllerTransition
   private func setupLabel() {
     view.addSubview(label)
     label.frame = labelFrame(of: menuCenterPosition)
+    label.textAlignment = labelAlignment(of: menuCenterPosition)
   }
   
   private func updateLabelText(index: Int?) {
@@ -216,6 +217,10 @@ public class QuickActionController: UIViewController, UIViewControllerTransition
     } else {
       return CGRect(x: 0, y: center.y - 100.0 - 20.0 - 120.0, width: view.bounds.width, height: 120)
     }
+  }
+  
+  private func labelAlignment(of center: CGPoint) -> NSTextAlignment {
+    return ((view.bounds.width / 2.0) < center.y) ? .left : .right
   }
   
   private func touchableRect(index: Int) -> CGRect {
