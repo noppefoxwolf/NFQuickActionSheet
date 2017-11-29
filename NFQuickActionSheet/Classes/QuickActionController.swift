@@ -194,7 +194,7 @@ public class QuickActionController: UIViewController, UIViewControllerTransition
     let rightSpace = view.bounds.width - center.x
     let leftSpace = center.x
     let topSpace = center.y
-    let warningHorizontalSpace: CGFloat = 64.0
+    let warningHorizontalSpace: CGFloat = 100.0
     let warningVerticalSpace: CGFloat = 100.0 + 20.0 + 120.0
     var offset: CGFloat = 180.0
     let isOverTop = topSpace < warningVerticalSpace
@@ -220,7 +220,7 @@ public class QuickActionController: UIViewController, UIViewControllerTransition
   }
   
   private func labelAlignment(of center: CGPoint) -> NSTextAlignment {
-    return ((view.bounds.width / 2.0) < center.y) ? .left : .right
+    return ((view.bounds.width / 2.0) < center.x) ? .left : .right
   }
   
   private func touchableRect(index: Int) -> CGRect {
