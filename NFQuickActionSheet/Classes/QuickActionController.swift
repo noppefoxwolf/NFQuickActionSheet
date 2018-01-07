@@ -130,11 +130,13 @@ public class QuickActionController: UIViewController, UIViewControllerTransition
   
   public func gestureEnded(_ sender: UIGestureRecognizer) {
     let point = sender.location(in: view)
-    if let index = index(of: point) {
-      let action = actions[index]
-      action.handler(action)
-    }
-    dismiss(animated: true, completion: nil)
+    dismiss(animated: true, completion: { [weak self] in
+      if let index = self?.index(of: point) {
+        if let action = self?.actions[index] {
+          action.handler(action)
+        }
+      }
+    })
   }
   
   private func index(of point: CGPoint) -> Int? {
